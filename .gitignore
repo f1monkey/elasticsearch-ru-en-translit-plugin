@@ -1,0 +1,29 @@
+### Java ###
+*.class
+*.log
+
+### Gradle ###
+.gradle/
+build/
+out/
+
+# Ignore local Gradle config
+gradle-app.setting
+
+# Ignore generated files
+*.iws
+*.iml
+*.ipr
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+*.ipr
+*.iws
+
+### VSCode ###
+.vscode/
+
+### OS files ###
+.DS_Store
+Thumbs.db
