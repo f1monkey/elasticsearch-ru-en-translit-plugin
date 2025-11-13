@@ -76,11 +76,18 @@ class TranslitProcessorTest {
         "глицин, glisin",
 
         "gainer, geiner",
-        "гейнер, geiner"
+        "гейнер, geiner",
+
+        "foods, fuds",
+        "фудс, fuds",
+        "фудз, fuds",
     })
     void testTransliteration(String input, String expected) {
         String result = TranslitProcessor.normalize(input);
-        assertEquals(expected, result, "Failed for input: " + input);
+        assertEquals(expected, result, 
+            () -> String.format("Failed for input: \"%s\"\nExpected: \"%s\"\nActual:   \"%s\"",
+                input, expected, result)
+        );
     }
 
     @Test
