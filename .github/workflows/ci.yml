@@ -1,16 +1,19 @@
-name: CI — Test & Build
+name: CI — Test & Build (Multi-Version)
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, develop ]
     tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ master ]
 
 jobs:
-  test-and-build:
+  build-matrix:
     runs-on: ubuntu-latest
-    name: Test & Build
+    strategy:
+      matrix:
+        es-version: ['8.19.0', '8.19.1', '8.19.2', '8.19.3', '8.19.4', '8.19.5', '8.19.6', '8.19.7']
+    name: Build for ES ${{ matrix.es-version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,39 +33,40 @@ jobs:
       - name: Run tests
         run: ./gradlew clean test --info
 
-      - name: Build plugin
-        run: ./gradlew clean build
+      - name: Build plugin for ES ${{ matrix.es-version }}
+        run: ./gradlew clean build -PesVersion=${{ matrix.es-version }}
 
-      - name: Upload artifact
+      - name: Upload ZIP artifact
         uses: actions/upload-artifact@v4
         with:
-          name: plugin-zip
-          path: build/distributions/*.zip
+          name: plugin-for-${{ matrix.es-version }}
+          path: build/distributions/*-for-${{ matrix.es-version }}.zip
           retention-days: 7
 
   release:
-    needs: test-and-build
+    needs: build-matrix
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     name: Publish Release
     permissions:
       contents: write
     steps:
-      - name: Download artifact
+      - name: Download all ZIPs
         uses: actions/download-artifact@v4
         with:
-          name: plugin-zip
-          path: ./zip
+          pattern: plugin-for-*
+          path: ./zips
 
-      - name: Release (if not exists)
+      - name: List downloaded files
+        run: ls -R ./zips
+
+      - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            ./zip/elasticsearch-ru-en-translit-plugin-*.zip
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
-          draft: false
-          prerelease: false
           generate_release_notes: true
+          files: |
+            ./zips/**/elasticsearch-ru-en-translit-plugin-*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,17 +1,24 @@
 plugins {
     id 'java'
+    id 'com.palantir.git-version' version '3.1.0'
 }
 
+def tagVersion = versionDetails().lastTag
+version = tagVersion ? tagVersion.replaceFirst(/^v/, '') : '0.0.0-SNAPSHOT'
 group = 'com.github.f1monkey.translit'
-version = '1.0.0'
+
+println "Building version: $version"
+
+def esVersion = project.hasProperty('esVersion') ? project.esVersion : '8.0.0'
+println "Target Elasticsearch version: $esVersion"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compileOnly "org.elasticsearch:elasticsearch:8.13.4"
-
+    compileOnly "org.elasticsearch:elasticsearch:8.0.0"
+    testImplementation "org.elasticsearch:elasticsearch:8.19.7"
     testImplementation "org.junit.jupiter:junit-jupiter:5.9.2"
     testImplementation "org.junit.jupiter:junit-jupiter-params:5.9.2"
     testImplementation "org.junit.platform:junit-platform-launcher"
@@ -27,6 +34,15 @@ test {
     useJUnitPlatform()
 }
 
+processResources {
+    filesMatching('plugin-descriptor.properties') {
+        expand(
+            plugin_version: version,
+            elasticsearch_version: esVersion
+        )
+    }
+}
+
 jar {
     manifest {
         attributes(
@@ -39,11 +55,13 @@ jar {
 tasks.register('pluginZip', Zip) {
     archiveBaseName = 'elasticsearch-ru-en-translit-plugin'
     archiveVersion = version
+    archiveClassifier = "for-${esVersion}"
 
-    into('') {
-        from(jar)
-        from('plugin-descriptor.properties')
+    from(jar)
+    from("$buildDir/resources/main") {
+        include 'plugin-descriptor.properties'
     }
+    into('')
 }
 
 build.dependsOn pluginZip
