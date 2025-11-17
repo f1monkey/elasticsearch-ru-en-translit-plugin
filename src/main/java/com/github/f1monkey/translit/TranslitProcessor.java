@@ -49,6 +49,8 @@ public class TranslitProcessor {
 
         rule("igh", "ai"),
         rule("ie", "ai"),
+        rule("ye$", "ai"), // bye
+        rule("uy$", "ai"), // buy
         rule("ee", "i"),
         rule("ea", "i"),
         rule("oo", "u"),

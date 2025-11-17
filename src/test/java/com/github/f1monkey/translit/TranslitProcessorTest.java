@@ -46,6 +46,8 @@ class TranslitProcessorTest {
             "амбиджиос, ambigious",
             "хи, he",
             "колледж, college",
+            "бай, bye",
+            "бай, buy"
     })
     void testTransliteration(String input1, String input2) {
         String result1 = TranslitProcessor.normalize(input1);
