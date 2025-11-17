@@ -29,6 +29,7 @@ public class TranslitProcessor {
         rule("come", "kam"),
         rule("coming", "kaming"),
         rule("hydro", "Gidro"),
+        rule("pply$", "plai"), // apply, supply
 
         rule("^one", "Wan"),
         rule("one$", "Wan"),
@@ -77,6 +78,11 @@ public class TranslitProcessor {
         rule("oo", "u"),
         rule("iou", "iu"), // seriuos
         rule("ou", "u"),
+        rule("aye", "ee"), // player
+
+        // open syllable
+        rule("([SW]|^[bcdfghjklmnpqrstvwxz]+)y$", "$1ai"), // why, shy, by
+
 
         rule("((kn|sn|bl|sh|th|br|gr|fl|cr|b))ow", "$1ou"), // 'ow' => 'оu' (know, snow, show, blow, throw)
         rule("ow", "au"), // now, cow, how => 'au'
@@ -96,7 +102,6 @@ public class TranslitProcessor {
         rule("([bcdfghjklmnpqrstvwxyz]*[aeiouy][bcdfghjklmnpqrstvwxyz])e$", "$1"), // silent "e"
         rule("e$", "i"), // if not silent, then sounds like "i"
 
-        rule("aye", "ee"), // player
         rule("c", "k"), // sounds like 'k'
         rule("a", "e"), // ambigious: any => eny, max => maks
         rule("y", "i"), // sounds like 'i'

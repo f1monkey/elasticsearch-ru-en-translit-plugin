@@ -75,12 +75,19 @@ class TranslitProcessorTest {
             "френд, friend",
 
             "джокер, joker",
+
+            "вай, why",
+            "уай, why",
+            "бай, by",
+            "апплай, apply",
+            "супплай, supply",
+            "кенди, candy"
     })
     void testTransliteration(String input1, String input2) {
         String result1 = TranslitProcessor.normalize(input1);
         String result2 = TranslitProcessor.normalize(input2);
         assertEquals(result1, result2,
-                () -> String.format("Failed for input: \"%s\", \"%s\"\n\"Actual:   \"%s\"\nExpected: \"%s\"\n",
+                () -> String.format("Failed for input: \"%s\", \"%s\"\n\"Ru:   \"%s\"\nEn: \"%s\"\n",
                         input1, input2, result1, result2));
     }
 
