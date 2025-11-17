@@ -29,7 +29,7 @@ class TranslitProcessorTest {
             "кальциум, calcium",
             "плеер, player",
             "плейер, player",
-            "chlorophyll, hlorofil",
+            "хлорофилл, chlorophyll",
             "инозитол, inositol",
             "холин, choline",
             "макслер, maxler",
@@ -43,7 +43,9 @@ class TranslitProcessorTest {
             "фудз, foods",
             "пиколинат, picolinate",
             "ноус, knows",
-            "амбиджиос, ambigious"
+            "амбиджиос, ambigious",
+            "хи, he",
+            "колледж, college",
     })
     void testTransliteration(String input1, String input2) {
         String result1 = TranslitProcessor.normalize(input1);

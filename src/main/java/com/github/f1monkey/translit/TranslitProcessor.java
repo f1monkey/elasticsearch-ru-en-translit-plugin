@@ -24,6 +24,8 @@ public class TranslitProcessor {
         rule("cial$", "shl"), // special
 
         rule("gi", "dzhi"),
+
+        rule("([bcdfghjklmnpqrstvwxyz]*[aeiouy])ge$", "$1dzh"), // g + silent "e"
         rule("ge", "dzhe"),
 
         rule("ci", "si"),
@@ -71,7 +73,9 @@ public class TranslitProcessor {
         rule("gh(?![aieo])", "g"),
         rule("gh", "h"),
         rule("cle$", "kl"), // uncle => ankl, circle => sirkl, miracle => mirakl
-        rule("e$", ""),
+
+        rule("([bcdfghjklmnpqrstvwxyz]*[aeiouy][bcdfghjklmnpqrstvwxyz])e$", "$1"), // silent "e"
+        rule("e$", "i"), // if not silent, then sounds like "i"
 
         rule("aye", "ee"), // player
         rule("c", "k"), // sounds like 'k'
