@@ -23,6 +23,16 @@ public class TranslitProcessor {
         rule("^cho", "ho"), // choline
         rule("cial$", "shl"), // special
 
+        rule("gi", "dzhi"),
+        rule("ge", "dzhe"),
+
+        rule("ci", "si"),
+        rule("ce", "se"),
+        rule("cy", "sai"),
+        rule("ca", "ka"),
+        rule("co", "ko"),
+        rule("cu", "ku"),
+
         // ai => ei (daily, main, train, paint)
         rule("ai", "ei"),
         rule("ay$", "ei"),
@@ -32,18 +42,15 @@ public class TranslitProcessor {
 
         rule("tio([a-z])", "sh$1"), // -tio- (ratio, patient)
 
-        rule("ci", "si"),
-        rule("ce", "se"),
-        rule("cy", "sai"),
-        rule("ca", "ka"),
-        rule("co", "ko"),
-        rule("cu", "ku"),
+        rule("e([bcdfghjklmnpqrstvwxyz]e)", "i$1"), // scene, these, complete
+        rule("e(r[aeiuoy])", "i$1"), // hero, media, secret
 
         rule("igh", "ai"),
         rule("ie", "ai"),
         rule("ee", "i"),
         rule("ea", "i"),
         rule("oo", "u"),
+        rule("iou", "iu"), // seriuos
         rule("ou", "u"),
 
         // 'ow' => 'оu' (know, snow, show, blow, throw)
@@ -79,7 +86,8 @@ public class TranslitProcessor {
         rule("ey(.*)", "ei$1"),
         rule("ay(.*)", "ai$1"),
         rule("c([ei])", "s$1"),
-        rule("a", "e")
+        rule("a", "e"),
+        rule("io", "iu") // сириус, сириос
     );
 
     private static final List<Rule> POST_RULES = List.of(

@@ -6,6 +6,7 @@
 .gradle/
 build/
 out/
+bin/
 
 # Ignore local Gradle config
 gradle-app.setting

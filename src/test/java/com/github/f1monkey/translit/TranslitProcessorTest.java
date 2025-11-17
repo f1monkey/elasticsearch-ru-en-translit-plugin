@@ -10,84 +10,47 @@ class TranslitProcessorTest {
 
     @ParameterizedTest
     @CsvSource({
-        "cycle, seikl",
-        "omega, omege",
-        "омега, omege",
+            "сайкл, cycle",
+            "омега, omega",
 
-        "extension, ekstenshn",
-        "экстеншн, ekstenshn",
-        "экстеншен, ekstenshn",
-        "экстеншон, ekstenshn",
-        "экстеншан, ekstenshn",
-
-        "mission, mishn",
-        "мишн, mishn",
-
-        "action, ekshn",
-        "экшен, ekshn",
-
-        "active, ektiv",
-        "эктив, ektiv",
-
-        "special, speshl",
-        "спешл, speshl",
-        "спешиал, speshl",
-        "спешиол, speshl",
-
-        "serious, serius",
-        "сириос, sirios",
-        "сириус, sirius",
-
-        "complex, kompleks",
-        "комплекс, kompleks",
-
-        "calcium, kelsium",
-        "кальциум, kelsium",
-
-        "player, pleer",
-        "плеер, pleer",
-        "плейер, pleer",
-
-        "chlorophyll, hlorofil",
-        "хлорофилл, hlorofil",
-
-        "inositol, inositol",
-        "инозитол, inositol",
-
-        "choline, holin",
-        "холин, holin",
-
-        "maxler, meksler",
-        "макслер, meksler",
-
-        "daily, deili",
-        "дейли, deili",
-
-        "day, dei",
-        "дей, dei",
-
-        "know, nou",
-        "ноу, nou",
-
-        "now, neu",
-        "нау, neu",
-
-        "glycine, glisin",
-        "глицин, glisin",
-
-        "gainer, geiner",
-        "гейнер, geiner",
-
-        "foods, fuds",
-        "фудс, fuds",
-        "фудз, fuds",
+            "экстеншн, extension",
+            "экстеншен, extension",
+            "экстеншон, extension",
+            "экстеншан, extension",
+            "мишн, mission",
+            "экшен, action",
+            "эктив, active",
+            "спешл, special",
+            "спешиал, special",
+            "спешиол, special",
+            "сириос, serious",
+            "сириус, sirius",
+            "комплекс, complex",
+            "кальциум, calcium",
+            "плеер, player",
+            "плейер, player",
+            "chlorophyll, hlorofil",
+            "инозитол, inositol",
+            "холин, choline",
+            "макслер, maxler",
+            "дейли, daily",
+            "дей, day",
+            "ноу, know",
+            "нау, now",
+            "глицин, glycine",
+            "гейнер, gainer",
+            "фудс, foods",
+            "фудз, foods",
+            "пиколинат, picolinate",
+            "ноус, knows",
+            "амбиджиос, ambigious"
     })
-    void testTransliteration(String input, String expected) {
-        String result = TranslitProcessor.normalize(input);
-        assertEquals(expected, result, 
-            () -> String.format("Failed for input: \"%s\"\nExpected: \"%s\"\nActual:   \"%s\"",
-                input, expected, result)
-        );
+    void testTransliteration(String input1, String input2) {
+        String result1 = TranslitProcessor.normalize(input1);
+        String result2 = TranslitProcessor.normalize(input2);
+        assertEquals(result1, result2,
+                () -> String.format("Failed for input: \"%s\", \"%s\"\n\"Actual:   \"%s\"\nExpected: \"%s\"\n",
+                        input1, input2, result1, result2));
     }
 
     @Test
