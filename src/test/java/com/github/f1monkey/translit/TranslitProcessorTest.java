@@ -56,6 +56,7 @@ class TranslitProcessorTest {
             "вей, whey",
 
             "уан, one",
+            "ван, one",
 
             "лав, love",
             "сам, some",

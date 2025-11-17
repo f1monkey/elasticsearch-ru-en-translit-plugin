@@ -7,14 +7,14 @@ public class TranslitProcessor {
 
     private static final Map<Character, String> RU_TRANSLIT = Map.ofEntries(
         Map.entry('а', "a"), Map.entry('б', "b"), Map.entry('в', "v"),
-        Map.entry('г', "g"), Map.entry('д', "d"), Map.entry('е', "e"),
+        Map.entry('г', "G"), Map.entry('д', "d"), Map.entry('е', "e"),
         Map.entry('ё', "yo"), Map.entry('ж', "zh"), Map.entry('з', "z"),
         Map.entry('и', "i"), Map.entry('й', "y"), Map.entry('к', "k"),
         Map.entry('л', "l"), Map.entry('м', "m"), Map.entry('н', "n"),
         Map.entry('о', "o"), Map.entry('п', "p"), Map.entry('р', "r"),
         Map.entry('с', "s"), Map.entry('т', "t"), Map.entry('у', "u"),
         Map.entry('ф', "f"), Map.entry('х', "h"), Map.entry('ц', "c"),
-        Map.entry('ч', "ch"), Map.entry('ш', "sh"), Map.entry('щ', "shch"),
+        Map.entry('ч', "ch"), Map.entry('ш', "S"), Map.entry('щ', "S"),
         Map.entry('ъ', ""), Map.entry('ы', "y"), Map.entry('ь', ""),
         Map.entry('э', "e"), Map.entry('ю', "yu"), Map.entry('я', "ya")
     );
@@ -28,41 +28,45 @@ public class TranslitProcessor {
         rule("done$", "dan"),
         rule("come", "kam"),
         rule("coming", "kaming"),
+        rule("hydro", "Gidro"),
 
-        rule("^one", "uan"),
-        rule("one$", "uan"),
+        rule("^one", "Wan"),
+        rule("one$", "Wan"),
 
-        rule("^cho", "ho"), // choline
-        rule("cial$", "shl"), // special
+        rule("^chol", "hol"), // choline
 
-        rule("gi", "ji"),
-        rule("([bcdfghjklmnpqrstvwxyz]*[aeiouy])ge$", "$1j"), // g + silent "e" (college)
-        rule("ge", "je"),
+        // sh
+        rule("(sion|tion)", "Sn"), // "action" "extension"
+        rule("xion", "kSn"), // -xion (complexion)
+        rule("sh", "S"),
+        rule("tio([a-z])", "S$1"), // -tio- (ratio, patient)
+        rule("sS", "S"), // mission
+        rule("cial$", "Sl"), // special
 
-        rule("hydro", "gidro"),
+        // g,j
+        rule("gi", "Ji"),
+        rule("([bcdfghjklmnpqrstvwxyz]*[aeiouy])ge$", "$1J"), // g + silent "e" (college)
+        rule("ge", "Je"),
+        rule("j", "J"),
+        rule("g", "G"),
 
+        // c => k, c => s
         rule("ci", "si"),
         rule("ce", "se"),
         rule("cy", "sai"),
-        rule("ca", "ka"),
-        rule("co", "ko"),
-        rule("cu", "ku"),
+        rule("c([aou])", "k$1"),
 
         // ai => ei (daily, main, train, paint)
         rule("ai", "ei"),
         rule("ay$", "ei"),
 
-        rule("(sion|tion)", "shn"), // "action" "extension"
-        rule("xion", "kshn"), // -xion (complexion)
-
-        rule("tio([a-z])", "sh$1"), // -tio- (ratio, patient)
-
+        // ie
         rule("^friend$", "frend"),
         rule("^fiend$", "find"),
         rule("^(d|t|l|p|v|f)ie([d,s]?$)", "$1ai$2"), // die, tie, lie, pie, vie, fie
         rule("ie", "i"), // cookie, field, piece
-        rule("igh", "ai"),
 
+        rule("igh", "ai"),
         rule("e([bcdfghjklmnpqrstvwxyz]e)", "i$1"), // scene, these, complete
         rule("e(r[aeiuoy])", "i$1"), // hero, media, secret
 
@@ -74,20 +78,16 @@ public class TranslitProcessor {
         rule("iou", "iu"), // seriuos
         rule("ou", "u"),
 
-        // 'ow' => 'оu' (know, snow, show, blow, throw)
-        rule("((kn|sn|bl|sh|th|br|gr|fl|cr|b))ow", "$1ou"),
-
-        // now, cow, how => 'au'
-        rule("ow", "au"),
+        rule("((kn|sn|bl|sh|th|br|gr|fl|cr|b))ow", "$1ou"), // 'ow' => 'оu' (know, snow, show, blow, throw)
+        rule("ow", "au"), // now, cow, how => 'au'
 
         rule("x", "ks"),
         rule("ck", "k"),
-        rule("qu", "kv"),
 
         rule("^chlo", "hlo"),  // chlorine, chloroform
         rule("kn", "n"), // know
         rule("wr", "r"), // write
-        rule("wh", "w"), // who, what
+        rule("wh", "W"), // who, what
         rule("ph", "f"),
         rule("gh(?![aieo])", "g"),
         rule("gh", "h"),
@@ -99,25 +99,33 @@ public class TranslitProcessor {
         rule("aye", "ee"), // player
         rule("c", "k"), // sounds like 'k'
         rule("a", "e"), // ambigious: any => eny, max => maks
-        rule("y", "i") // sounds like 'i'
+        rule("y", "i"), // sounds like 'i'
+
+        rule("w", "W"),
+        rule("v", "W"),
+        rule("qu", "kW") // quake, question
     );
 
     private static final List<Rule> RU_RULES = List.of(
-        rule("sh[aeo]n$", "shn"),
-        rule("shi[aeo]l$", "shl"),
+        rule("(u)([aeiou])", "W$2"),
+        rule("v", "W"),
+
+        rule("S[aeo]n$", "Sn"),
+        rule("Si[aeo]l$", "Sl"),
         rule("eye(.*)", "ee$1"),
         rule("ey(.*)", "ei$1"),
         rule("ay(.*)", "ai$1"),
         rule("c([ei])", "s$1"),
-        rule("dzh", "j"),
+        rule("dzh", "J"),
         rule("a", "e"),
         rule("io", "iu") // сириус, сириос
     );
 
     private static final List<Rule> POST_RULES = List.of(
-        rule("([bcdfghjklmnpqrstvwxyz])\\1", "$1"), // double consonants
-        rule("z", "s"),
-        rule("w", "v")
+        // double consonants
+        rule("([bcdfghjklmnpqrstvwxyz])\\1", "$1"),
+
+        rule("z", "s")
     );
 
     private static final class Rule {
