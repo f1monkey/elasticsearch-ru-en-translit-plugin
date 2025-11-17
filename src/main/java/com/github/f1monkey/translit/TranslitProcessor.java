@@ -35,10 +35,9 @@ public class TranslitProcessor {
         rule("^cho", "ho"), // choline
         rule("cial$", "shl"), // special
 
-        rule("gi", "dzhi"),
-
-        rule("([bcdfghjklmnpqrstvwxyz]*[aeiouy])ge$", "$1dzh"), // g + silent "e"
-        rule("ge", "dzhe"),
+        rule("gi", "ji"),
+        rule("([bcdfghjklmnpqrstvwxyz]*[aeiouy])ge$", "$1j"), // g + silent "e" (college)
+        rule("ge", "je"),
 
         rule("hydro", "gidro"),
 
@@ -110,6 +109,7 @@ public class TranslitProcessor {
         rule("ey(.*)", "ei$1"),
         rule("ay(.*)", "ai$1"),
         rule("c([ei])", "s$1"),
+        rule("dzh", "j"),
         rule("a", "e"),
         rule("io", "iu") // сириус, сириос
     );

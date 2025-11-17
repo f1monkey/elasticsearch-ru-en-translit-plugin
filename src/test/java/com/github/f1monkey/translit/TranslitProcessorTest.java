@@ -62,7 +62,7 @@ class TranslitProcessorTest {
             "каминг, coming",
             "кам, come",
             "глов, glove",
-            "шов, shov",
+            "шов, shove",
             "дан, done",
             "самуан, someone",
 
@@ -71,7 +71,9 @@ class TranslitProcessorTest {
 
             "кукис, cookies",
             "пис, piece",
-            "френд, friend"
+            "френд, friend",
+
+            "джокер, joker",
     })
     void testTransliteration(String input1, String input2) {
         String result1 = TranslitProcessor.normalize(input1);
