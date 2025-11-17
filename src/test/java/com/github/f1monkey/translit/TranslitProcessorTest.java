@@ -55,6 +55,8 @@ class TranslitProcessorTest {
             "вей, way",
             "вей, whey",
 
+            "уан, one",
+
             "лав, love",
             "сам, some",
             "каминг, coming",
@@ -62,7 +64,7 @@ class TranslitProcessorTest {
             "глов, glove",
             "шов, shov",
             "дан, done",
-
+            "самуан, someone",
 
             "дайз, dies",
             "дай, die",

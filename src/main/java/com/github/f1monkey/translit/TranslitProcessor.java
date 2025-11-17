@@ -29,6 +29,9 @@ public class TranslitProcessor {
         rule("come", "kam"),
         rule("coming", "kaming"),
 
+        rule("^one", "uan"),
+        rule("one$", "uan"),
+
         rule("^cho", "ho"), // choline
         rule("cial$", "shl"), // special
 
