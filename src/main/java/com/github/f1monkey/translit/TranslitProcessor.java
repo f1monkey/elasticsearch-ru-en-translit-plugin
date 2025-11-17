@@ -28,6 +28,8 @@ public class TranslitProcessor {
         rule("([bcdfghjklmnpqrstvwxyz]*[aeiouy])ge$", "$1dzh"), // g + silent "e"
         rule("ge", "dzhe"),
 
+        rule("hydro", "gidro"),
+
         rule("ci", "si"),
         rule("ce", "se"),
         rule("cy", "sai"),
@@ -44,11 +46,15 @@ public class TranslitProcessor {
 
         rule("tio([a-z])", "sh$1"), // -tio- (ratio, patient)
 
+        rule("^friend$", "frend"),
+        rule("^fiend$", "find"),
+        rule("^(d|t|l|p|v|f)ie([d,s]?$)", "$1ai$2"), // die, tie, lie, pie, vie, fie
+        rule("ie", "i"), // cookie, field, piece
+        rule("igh", "ai"),
+
         rule("e([bcdfghjklmnpqrstvwxyz]e)", "i$1"), // scene, these, complete
         rule("e(r[aeiuoy])", "i$1"), // hero, media, secret
 
-        rule("igh", "ai"),
-        rule("ie", "ai"),
         rule("ye$", "ai"), // bye
         rule("uy$", "ai"), // buy
         rule("ee", "i"),
@@ -98,7 +104,8 @@ public class TranslitProcessor {
 
     private static final List<Rule> POST_RULES = List.of(
         rule("([bcdfghjklmnpqrstvwxyz])\\1", "$1"), // double consonants
-        rule("z", "s")
+        rule("z", "s"),
+        rule("w", "v")
     );
 
     private static final class Rule {

@@ -47,7 +47,21 @@ class TranslitProcessorTest {
             "хи, he",
             "колледж, college",
             "бай, bye",
-            "бай, buy"
+            "бай, buy",
+            "веган, vegan",
+            // "астаксантин, astaxanthin",
+            // "кафеин, kaffeine",
+            "ниацинамид, niacinamide",
+            "гидролизат, hydrolysate",
+            "вей, way",
+            "вей, whey",
+
+            "дайз, dies",
+            "дай, die",
+
+            "кукис, cookies",
+            "пис, piece",
+            "френд, friend"
     })
     void testTransliteration(String input1, String input2) {
         String result1 = TranslitProcessor.normalize(input1);
