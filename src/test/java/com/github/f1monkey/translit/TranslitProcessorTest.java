@@ -49,12 +49,20 @@ class TranslitProcessorTest {
             "бай, bye",
             "бай, buy",
             "веган, vegan",
-            // "астаксантин, astaxanthin",
-            // "кафеин, kaffeine",
             "ниацинамид, niacinamide",
             "гидролизат, hydrolysate",
+
             "вей, way",
             "вей, whey",
+
+            "лав, love",
+            "сам, some",
+            "каминг, coming",
+            "кам, come",
+            "глов, glove",
+            "шов, shov",
+            "дан, done",
+
 
             "дайз, dies",
             "дай, die",

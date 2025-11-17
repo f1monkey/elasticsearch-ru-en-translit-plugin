@@ -20,6 +20,15 @@ public class TranslitProcessor {
     );
 
     private static final List<Rule> EN_RULES = List.of(
+        rule("^love", "lav"),
+        rule("^glove", "glov"),
+        rule("^shove", "shov"),
+        rule("^have$", "hev"),
+        rule("some", "sam"),
+        rule("done$", "dan"),
+        rule("come", "kam"),
+        rule("coming", "kaming"),
+
         rule("^cho", "ho"), // choline
         rule("cial$", "shl"), // special
 
