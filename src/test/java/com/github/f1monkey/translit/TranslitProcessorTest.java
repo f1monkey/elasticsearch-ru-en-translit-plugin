@@ -81,7 +81,10 @@ class TranslitProcessorTest {
             "бай, by",
             "апплай, apply",
             "супплай, supply",
-            "кенди, candy"
+            "кенди, candy",
+
+            "спик, speak",
+            "брейк, break"
     })
     void testTransliteration(String input1, String input2) {
         String result1 = TranslitProcessor.normalize(input1);

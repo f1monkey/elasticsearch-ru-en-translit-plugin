@@ -74,11 +74,14 @@ public class TranslitProcessor {
         rule("ye$", "ai"), // bye
         rule("uy$", "ai"), // buy
         rule("ee", "i"),
-        rule("ea", "i"),
         rule("oo", "u"),
         rule("iou", "iu"), // seriuos
         rule("ou", "u"),
         rule("aye", "ee"), // player
+
+        // ea
+        rule("^break", "breik"),
+        rule("ea", "i"),
 
         // open syllable
         rule("([SW]|^[bcdfghjklmnpqrstvwxz]+)y$", "$1ai"), // why, shy, by
