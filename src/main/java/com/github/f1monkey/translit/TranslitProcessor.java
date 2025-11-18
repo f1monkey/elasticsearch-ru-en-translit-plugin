@@ -20,23 +20,27 @@ public class TranslitProcessor {
     );
 
     private static final List<Rule> EN_RULES = List.of(
-        rule("^love", "lav"),
+        rule("^love", "lAv"),
         rule("^glove", "glov"),
         rule("^shove", "shov"),
         rule("^have$", "hev"),
-        rule("some", "sam"),
-        rule("done$", "dan"),
-        rule("come", "kam"),
-        rule("coming", "kaming"),
+        rule("some", "sAm"),
+        rule("done$", "dAn"),
+        rule("come", "kAm"),
+        rule("coming", "kAming"),
         rule("hydro", "GIdro"),
         rule("gly(.+)", "glI$1"), // glycine
-        rule("(.+)ysat(.+)", "$1isat$2"), // hydrolysate
+        rule("(.+)ysat(.+)", "$1IsAt$2"), // hydrolysate
+        rule("(.+)inat(.+)", "$1InAt$2"), // picolinate
+        rule("(.+)amid(.+)", "$1AmId$2"), // niacinamide
+        rule("(.+)acin(.+)", "$1AcIn$2"), // niacinamide
         rule("^chlo", "hlo"),  // chlorine, chloroform
-
-        rule("^one", "Wan"),
-        rule("one$", "Wan"),
-
         rule("^chol", "hol"), // choline
+        rule("pico", "pIco"), // picolinate
+
+        rule("^one", "WAn"),
+        rule("one$", "WAn"),
+
 
         // sh
         rule("(sion|tion)", "Sn"), // "action" "extension"
@@ -54,8 +58,8 @@ public class TranslitProcessor {
         rule("g", "G"),
 
         // c => k, c => s
-        rule("c([iey])", "s$1"),
-        rule("c([aoubcdfghjklmnpqrstvwxyz])", "k$1"),
+        rule("c([ieyIEY])", "s$1"),
+        rule("c([aouAOUbcdfghjklmnpqrstvwxyzW])", "k$1"),
 
         // ai => ei (daily, main, train, paint)
         rule("ai", "ei"),
@@ -77,9 +81,11 @@ public class TranslitProcessor {
         rule("sykl[e]?", "saikl"), // cycle
         rule("y([bcdfghjklmnpqrstvwxz][aeiouy])", "ai$1"), // typo
         rule("u([bcdfghjklmnpqrstvwxz][aeiouy])", "iu$1"), // music
+        rule("a([bcdfghjklmnpqrstvwxz][aeiouy])", "ei$1"), // make
 
         // closed syllable
-        rule("u([bcdfghjklmnpqrstvwxz][^aeiouy])", "a$1"), // supply, currency
+        rule("u([bcdfghjklmnpqrstvwxz][^aeiouy])", "A$1"), // supply, currency
+        rule("a([bcdfghjklmnpqrstvwxz][^aeiouy])", "A$1"), // grapple
 
         rule("ye$", "ai"), // bye
         rule("uy$", "ai"), // buy
@@ -107,11 +113,11 @@ public class TranslitProcessor {
         rule("gh", "h"),
         rule("cle$", "kl"), // uncle => ankl, circle => sirkl, miracle => mirakl
 
-        rule("([bcdfghjklmnpqrstvwxyz]*[aeiouy][bcdfghjklmnpqrstvwxyz])e$", "$1"), // silent "e"
+        rule("([bcdfghjklmnpqrstvwxyz]*[aeiouyAIOU][bcdfghjklmnpqrstvwxyz]|ppl)e$", "$1"), // silent "e"
         rule("e$", "I"), // if not silent, then sounds like "i"
 
         rule("c", "k"), // sounds like 'k'
-        rule("a", "e"), // ambigious: any => eny, max => maks
+        rule("[aA]", "e"), // ambigious: any => eny, max => maks
         rule("[iy]", "I"), // sounds like 'i'
 
         rule("w", "W"),
