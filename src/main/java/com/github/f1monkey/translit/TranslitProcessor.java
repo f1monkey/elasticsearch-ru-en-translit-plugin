@@ -41,7 +41,6 @@ public class TranslitProcessor {
         rule("^one", "WAn"),
         rule("one$", "WAn"),
 
-
         // sh
         rule("(sion|tion)", "Sn"), // "action" "extension"
         rule("xion", "kSn"), // -xion (complexion)
@@ -75,17 +74,19 @@ public class TranslitProcessor {
         rule("e([bcdfghjklmnpqrstvwxyz]e)", "i$1"), // scene, these, complete
         rule("e(r[aeiuoy])", "i$1"), // hero, media, secret
 
-        // open syllable
+        // a
+        rule("a([bcdfghjklmnpqrstvwxz][^aeiouy])", "A$1"), // grapple
+        rule("a([bcdfghjklmnpqrstvwxz][aeiouy])", "ei$1"), // make
+
+        // y
         rule("([SW]|^[bcdfghjklmnpqrstvwxz]+)y$", "$1ai"), // why, shy, by
         rule("pply$", "plai"), // apply, supply
         rule("sykl[e]?", "saikl"), // cycle
         rule("y([bcdfghjklmnpqrstvwxz][aeiouy])", "ai$1"), // typo
-        rule("u([bcdfghjklmnpqrstvwxz][aeiouy])", "iu$1"), // music
-        rule("a([bcdfghjklmnpqrstvwxz][aeiouy])", "ei$1"), // make
 
-        // closed syllable
+        // u
+        rule("u([bcdfghjklmnpqrstvwxz][aeiouy])", "iu$1"), // music
         rule("u([bcdfghjklmnpqrstvwxz][^aeiouy])", "A$1"), // supply, currency
-        rule("a([bcdfghjklmnpqrstvwxz][^aeiouy])", "A$1"), // grapple
 
         rule("ye$", "ai"), // bye
         rule("uy$", "ai"), // buy
@@ -97,6 +98,10 @@ public class TranslitProcessor {
         // ea
         rule("^break", "breik"),
         rule("ea", "i"),
+
+        // e
+        rule("([bcdfghjklmnpqrstvwxyz]*[aeiouyAIU][bcdfghjklmnpqrstvwxyz]|ppl)e$", "$1"), // silent "e"
+        rule("e$", "I"), // if not silent, then sounds like "i"
 
         rule("((kn|sn|bl|sh|th|br|gr|fl|cr|b))ow", "$1ou"), // 'ow' => 'оu' (know, snow, show, blow, throw)
         rule("ow", "au"), // now, cow, how => 'au'
@@ -111,9 +116,6 @@ public class TranslitProcessor {
         rule("gh(?![aieo])", "g"),
         rule("gh", "h"),
         rule("cle$", "kl"), // uncle => ankl, circle => sirkl, miracle => mirakl
-
-        rule("([bcdfghjklmnpqrstvwxyz]*[aeiouyAIU][bcdfghjklmnpqrstvwxyz]|ppl)e$", "$1"), // silent "e"
-        rule("e$", "I"), // if not silent, then sounds like "i"
 
         rule("c", "k"), // sounds like 'k'
         rule("[aA]", "e"), // ambigious: any => eny, max => maks

@@ -94,7 +94,14 @@ class TranslitProcessorTest {
             "карренси, currency",
             "граппл, grapple",
 
-            "смоук, smoke"
+            "смоук, smoke",
+            "смок, smoke",
+
+            "эктив, active",
+            "эктивити, activity",
+            // "дайв, dive",
+            // "дайвер, diver",
+            // "спайк, spike"
     })
     void testTransliteration(String input1, String input2) {
         String result1 = TranslitProcessor.normalize(input1);
