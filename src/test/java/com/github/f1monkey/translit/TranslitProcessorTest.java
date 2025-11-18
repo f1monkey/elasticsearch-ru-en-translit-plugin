@@ -93,6 +93,8 @@ class TranslitProcessorTest {
             "мьюзик, music",
             "карренси, currency",
             "граппл, grapple",
+
+            "смоук, smoke"
     })
     void testTransliteration(String input1, String input2) {
         String result1 = TranslitProcessor.normalize(input1);

@@ -59,7 +59,7 @@ public class TranslitProcessor {
 
         // c => k, c => s
         rule("c([ieyIEY])", "s$1"),
-        rule("c([aouAOUbcdfghjklmnpqrstvwxyzW])", "k$1"),
+        rule("c([aouAoUbcdfghjklmnpqrstvwxyzW])", "k$1"),
 
         // ai => ei (daily, main, train, paint)
         rule("ai", "ei"),
@@ -92,7 +92,6 @@ public class TranslitProcessor {
         rule("ee", "i"),
         rule("oo", "u"),
         rule("iou", "iu"), // seriuos
-        rule("ou", "u"),
         rule("aye", "ee"), // player
 
         // ea
@@ -113,7 +112,7 @@ public class TranslitProcessor {
         rule("gh", "h"),
         rule("cle$", "kl"), // uncle => ankl, circle => sirkl, miracle => mirakl
 
-        rule("([bcdfghjklmnpqrstvwxyz]*[aeiouyAIOU][bcdfghjklmnpqrstvwxyz]|ppl)e$", "$1"), // silent "e"
+        rule("([bcdfghjklmnpqrstvwxyz]*[aeiouyAIU][bcdfghjklmnpqrstvwxyz]|ppl)e$", "$1"), // silent "e"
         rule("e$", "I"), // if not silent, then sounds like "i"
 
         rule("c", "k"), // sounds like 'k'
@@ -122,7 +121,11 @@ public class TranslitProcessor {
 
         rule("w", "W"),
         rule("v", "W"),
-        rule("qu", "kW") // quake, question
+        rule("qu", "kW"), // quake, question
+
+        rule("A", "a"),
+        rule("I", "i"),
+        rule("ou?", "o")
     );
 
     private static final List<Rule> RU_RULES = List.of(
@@ -138,7 +141,8 @@ public class TranslitProcessor {
         rule("dzh", "J"),
         rule("a", "e"),
         rule("io", "iu"), // сириус, сириос
-        rule("[iy]", "I")
+        rule("y", "i"),
+        rule("ou", "o")
     );
 
     private static final List<Rule> POST_RULES = List.of(
