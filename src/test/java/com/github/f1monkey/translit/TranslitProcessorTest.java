@@ -10,7 +10,6 @@ class TranslitProcessorTest {
 
     @ParameterizedTest
     @CsvSource({
-            "сайкл, cycle",
             "омега, omega",
 
             "экстеншн, extension",
@@ -19,10 +18,11 @@ class TranslitProcessorTest {
             "экстеншан, extension",
             "мишн, mission",
             "экшен, action",
-            "эктив, active",
             "спешл, special",
             "спешиал, special",
             "спешиол, special",
+
+            "эктив, active",
             "сириос, serious",
             "сириус, sirius",
             "комплекс, complex",
@@ -84,7 +84,10 @@ class TranslitProcessorTest {
             "кенди, candy",
 
             "спик, speak",
-            "брейк, break"
+            "брейк, break",
+
+            "сайкл, cycle",
+            "тайпо, typo",
     })
     void testTransliteration(String input1, String input2) {
         String result1 = TranslitProcessor.normalize(input1);

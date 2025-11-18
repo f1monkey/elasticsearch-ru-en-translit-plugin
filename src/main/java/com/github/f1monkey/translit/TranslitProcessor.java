@@ -28,8 +28,10 @@ public class TranslitProcessor {
         rule("done$", "dan"),
         rule("come", "kam"),
         rule("coming", "kaming"),
-        rule("hydro", "Gidro"),
-        rule("pply$", "plai"), // apply, supply
+        rule("hydro", "GIdro"),
+        rule("gly(.+)", "glI$1"), // glycine
+        rule("(.+)ysat(.+)", "$1isat$2"), // hydrolysate
+        rule("^chlo", "hlo"),  // chlorine, chloroform
 
         rule("^one", "Wan"),
         rule("one$", "Wan"),
@@ -52,10 +54,8 @@ public class TranslitProcessor {
         rule("g", "G"),
 
         // c => k, c => s
-        rule("ci", "si"),
-        rule("ce", "se"),
-        rule("cy", "sai"),
-        rule("c([aou])", "k$1"),
+        rule("c([iey])", "s$1"),
+        rule("c([aoubcdfghjklmnpqrstvwxyz])", "k$1"),
 
         // ai => ei (daily, main, train, paint)
         rule("ai", "ei"),
@@ -85,6 +85,9 @@ public class TranslitProcessor {
 
         // open syllable
         rule("([SW]|^[bcdfghjklmnpqrstvwxz]+)y$", "$1ai"), // why, shy, by
+        rule("pply$", "plai"), // apply, supply
+        rule("sykl[e]?", "saikl"), // cycle
+        rule("y([bcdfghjklmnpqrstvwxz][aeiouy])", "ai$1"), // typo
 
 
         rule("((kn|sn|bl|sh|th|br|gr|fl|cr|b))ow", "$1ou"), // 'ow' => 'оu' (know, snow, show, blow, throw)
@@ -93,7 +96,6 @@ public class TranslitProcessor {
         rule("x", "ks"),
         rule("ck", "k"),
 
-        rule("^chlo", "hlo"),  // chlorine, chloroform
         rule("kn", "n"), // know
         rule("wr", "r"), // write
         rule("wh", "W"), // who, what
@@ -103,11 +105,11 @@ public class TranslitProcessor {
         rule("cle$", "kl"), // uncle => ankl, circle => sirkl, miracle => mirakl
 
         rule("([bcdfghjklmnpqrstvwxyz]*[aeiouy][bcdfghjklmnpqrstvwxyz])e$", "$1"), // silent "e"
-        rule("e$", "i"), // if not silent, then sounds like "i"
+        rule("e$", "I"), // if not silent, then sounds like "i"
 
         rule("c", "k"), // sounds like 'k'
         rule("a", "e"), // ambigious: any => eny, max => maks
-        rule("y", "i"), // sounds like 'i'
+        rule("[iy]", "I"), // sounds like 'i'
 
         rule("w", "W"),
         rule("v", "W"),
@@ -126,7 +128,8 @@ public class TranslitProcessor {
         rule("c([ei])", "s$1"),
         rule("dzh", "J"),
         rule("a", "e"),
-        rule("io", "iu") // сириус, сириос
+        rule("io", "iu"), // сириус, сириос
+        rule("i", "I")
     );
 
     private static final List<Rule> POST_RULES = List.of(
