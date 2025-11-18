@@ -31,7 +31,7 @@ sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install %url%
 ### Building from source
 If there is no plugin for your version, compile it yourself. I.e. for `8.19.3`:
 ```bash
-git clone https://github.com/f1moneky/elasticsearch-ru-en-translit-plugin.git
+git clone https://github.com/f1monkey/elasticsearch-ru-en-translit-plugin.git
 cd elasticsearch-ru-en-translit-plugin
 ./gradlew clean build -PesVersion=8.19.3
 ```
