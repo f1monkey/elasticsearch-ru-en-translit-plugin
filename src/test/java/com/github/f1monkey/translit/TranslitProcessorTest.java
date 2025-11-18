@@ -103,6 +103,10 @@ class TranslitProcessorTest {
             "дайвер, diver",
             "спайк, spike",
             "спик, speak",
+
+            "пуш, push",
+            "булл, bull",
+            "инпут, input",
     })
     void testTransliteration(String input1, String input2) {
         String result1 = TranslitProcessor.normalize(input1);

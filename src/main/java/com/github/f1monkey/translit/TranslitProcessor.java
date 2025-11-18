@@ -39,6 +39,18 @@ public class TranslitProcessor {
         rule("pico", "pIco"), // picolinate
         rule("cle$", "kl"), // uncle => ankl, circle => sirkl, miracle => mirakl
 
+        // u => oo words
+        rule("(b|p|f|c|n|sk)ull", "$1Ull"),
+        rule("(p|b)ush", "$1Ush"),
+        rule("cushion", "cUshion"),
+        rule("bushel", "bUshel"),
+        rule("butcher", "bUtcher"),
+        rule("mustang", "mUstang"),
+        rule("pustule", "pUstule"),
+        rule("put", "pUt"),
+        rule("pudding", "pUdding"),
+
+        // one
         rule("^one", "WAn"),
         rule("one$", "WAn"),
 
@@ -121,9 +133,12 @@ public class TranslitProcessor {
         rule("v", "W"),
         rule("qu", "kW"), // quake, question
 
+        rule("ou?", "o"),
+
+
         rule("A", "a"),
         rule("I", "i"),
-        rule("ou?", "o")
+        rule("U", "u")
     );
 
     private static final List<Rule> RU_RULES = List.of(
