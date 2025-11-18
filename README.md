@@ -20,11 +20,21 @@ Perfect for:
 
 ## Installation
 
+* Select the plugin version that matches your ElasticSearch version [here](https://github.com/f1monkey/elasticsearch-ru-en-translit-plugin/releases).
+* Copy url
 * Run command
 ```bash
-sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install https://github.com/f1monkey/elasticsearch-ru-en-translit-plugin/releases/download/v1.0.0/elasticsearch-ru-en-translit-plugin-1.0.0.zip
+sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install %url%
 ```
-* Restart elasticsearch
+* Restart ElasticSearch
+
+### Building from source
+If there is no plugin for your version, compile it yourself. I.e. for `8.19.3`:
+```bash
+git clone https://github.com/f1moneky/elasticsearch-ru-en-translit-plugin.git
+cd elasticsearch-ru-en-translit-plugin
+./gradlew clean build -PesVersion=8.19.3
+```
 
 ## Usage
 
@@ -89,16 +99,6 @@ Result:
     }
   ]
 }
-```
-
-## Build from Source
-
-Pass elasticSearch version as a build argument
-
-```bash
-git clone https://github.com/f1moneky/elasticsearch-ru-en-translit-plugin.git
-cd elasticsearch-ru-en-translit-plugin
-./gradlew clean build -PesVersion=8.19.3
 ```
 
 ## Run tests
