@@ -39,6 +39,15 @@ public class TranslitProcessor {
         rule("pico", "pIco"), // picolinate
         rule("cle$", "kl"), // uncle => ankl, circle => sirkl, miracle => mirakl
 
+        rule("(c|w|sh)ould", "$1Ud"),
+
+        // all => oll
+        rule("ally$", "Ally"), // actually, totally
+        rule("al(ways|most|right)", "ol$1"), // always, almost
+        rule("shall", "shell"),
+        rule("^all", "All"), // alligator, allergy
+        rule("all", "oll"),
+
         // u => oo words
         rule("(b|p|f|c|n|sk)ull", "$1Ull"),
         rule("(p|b)ush", "$1Ush"),
@@ -86,7 +95,7 @@ public class TranslitProcessor {
         rule("e([bcdfghjklmnpqrstvwxyz][aeiuoy])", "I$1"), // scene, these, complete
 
         // a
-        rule("a([bcdfghjklmnpqrstvwxz][^aeiouy])", "A$1"), // grapple
+        rule("a([bcdfghjklmnpqrstvwxz]{2,})", "A$1"), // grapple
         rule("a([bcdfghjklmnpqrstvwxz][aeiouy])", "ei$1"), // make
 
         // y

@@ -107,6 +107,14 @@ class TranslitProcessorTest {
             "пуш, push",
             "булл, bull",
             "инпут, input",
+
+            "куд, could",
+            "вуд, would",
+            "шуд, should",
+
+            "олвейс, always",
+            "футбол, football",
+            "аллигейтор, alligator",
     })
     void testTransliteration(String input1, String input2) {
         String result1 = TranslitProcessor.normalize(input1);
