@@ -37,6 +37,7 @@ public class TranslitProcessor {
         rule("^chlo", "hlo"),  // chlorine, chloroform
         rule("^chol", "hol"), // choline
         rule("pico", "pIco"), // picolinate
+        rule("cle$", "kl"), // uncle => ankl, circle => sirkl, miracle => mirakl
 
         rule("^one", "WAn"),
         rule("one$", "WAn"),
@@ -66,38 +67,34 @@ public class TranslitProcessor {
 
         // ie
         rule("^friend$", "frend"),
-        rule("^fiend$", "find"),
-        rule("^(d|t|l|p|v|f)ie([d,s]?$)", "$1ai$2"), // die, tie, lie, pie, vie, fie
-        rule("ie", "i"), // cookie, field, piece
+        rule("ie", "I"), // cookie, field, piece
 
-        rule("igh", "ai"),
-        rule("e([bcdfghjklmnpqrstvwxyz]e)", "i$1"), // scene, these, complete
-        rule("e(r[aeiuoy])", "i$1"), // hero, media, secret
+        rule("igh", "I"),
+
+        rule("e([bcdfghjklmnpqrstvwxyz][aeiuoy])", "I$1"), // scene, these, complete
 
         // a
         rule("a([bcdfghjklmnpqrstvwxz][^aeiouy])", "A$1"), // grapple
         rule("a([bcdfghjklmnpqrstvwxz][aeiouy])", "ei$1"), // make
 
         // y
-        rule("([SW]|^[bcdfghjklmnpqrstvwxz]+)y$", "$1ai"), // why, shy, by
-        rule("pply$", "plai"), // apply, supply
-        rule("sykl[e]?", "saikl"), // cycle
-        rule("y([bcdfghjklmnpqrstvwxz][aeiouy])", "ai$1"), // typo
+        rule("([SW]|^[bcdfghjklmnpqrstvwxz]+)y$", "$1I"), // why, shy, by
+        rule("pply$", "plI"), // apply, supply
+        rule("y([bcdfghjklmnpqrstvwxz][aeiouy])", "I$1"), // cycle, typo
 
         // u
         rule("u([bcdfghjklmnpqrstvwxz][aeiouy])", "iu$1"), // music
         rule("u([bcdfghjklmnpqrstvwxz][^aeiouy])", "A$1"), // supply, currency
 
-        rule("ye$", "ai"), // bye
-        rule("uy$", "ai"), // buy
-        rule("ee", "i"),
+        rule("(ye|uy)$", "I"), // bye, buy
+        rule("ee", "I"),
         rule("oo", "u"),
         rule("iou", "iu"), // seriuos
         rule("aye", "ee"), // player
 
         // ea
         rule("^break", "breik"),
-        rule("ea", "i"),
+        rule("ea", "I"),
 
         // e
         rule("([bcdfghjklmnpqrstvwxyz]*[aeiouyAIU][bcdfghjklmnpqrstvwxyz]|ppl)e$", "$1"), // silent "e"
@@ -115,7 +112,6 @@ public class TranslitProcessor {
         rule("ph", "f"),
         rule("gh(?![aieo])", "g"),
         rule("gh", "h"),
-        rule("cle$", "kl"), // uncle => ankl, circle => sirkl, miracle => mirakl
 
         rule("c", "k"), // sounds like 'k'
         rule("[aA]", "e"), // ambigious: any => eny, max => maks
@@ -141,6 +137,7 @@ public class TranslitProcessor {
         rule("ay(.*)", "ai$1"),
         rule("c([ei])", "s$1"),
         rule("dzh", "J"),
+        rule("ai", "i"),
         rule("a", "e"),
         rule("io", "iu"), // сириус, сириос
         rule("y", "i"),
