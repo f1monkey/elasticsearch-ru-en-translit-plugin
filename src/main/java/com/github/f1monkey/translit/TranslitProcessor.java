@@ -71,6 +71,16 @@ public class TranslitProcessor {
         rule("e([bcdfghjklmnpqrstvwxyz]e)", "i$1"), // scene, these, complete
         rule("e(r[aeiuoy])", "i$1"), // hero, media, secret
 
+        // open syllable
+        rule("([SW]|^[bcdfghjklmnpqrstvwxz]+)y$", "$1ai"), // why, shy, by
+        rule("pply$", "plai"), // apply, supply
+        rule("sykl[e]?", "saikl"), // cycle
+        rule("y([bcdfghjklmnpqrstvwxz][aeiouy])", "ai$1"), // typo
+        rule("u([bcdfghjklmnpqrstvwxz][aeiouy])", "iu$1"), // music
+
+        // closed syllable
+        rule("u([bcdfghjklmnpqrstvwxz][^aeiouy])", "a$1"), // supply, currency
+
         rule("ye$", "ai"), // bye
         rule("uy$", "ai"), // buy
         rule("ee", "i"),
@@ -82,13 +92,6 @@ public class TranslitProcessor {
         // ea
         rule("^break", "breik"),
         rule("ea", "i"),
-
-        // open syllable
-        rule("([SW]|^[bcdfghjklmnpqrstvwxz]+)y$", "$1ai"), // why, shy, by
-        rule("pply$", "plai"), // apply, supply
-        rule("sykl[e]?", "saikl"), // cycle
-        rule("y([bcdfghjklmnpqrstvwxz][aeiouy])", "ai$1"), // typo
-
 
         rule("((kn|sn|bl|sh|th|br|gr|fl|cr|b))ow", "$1ou"), // 'ow' => 'оu' (know, snow, show, blow, throw)
         rule("ow", "au"), // now, cow, how => 'au'
@@ -129,7 +132,7 @@ public class TranslitProcessor {
         rule("dzh", "J"),
         rule("a", "e"),
         rule("io", "iu"), // сириус, сириос
-        rule("i", "I")
+        rule("[iy]", "I")
     );
 
     private static final List<Rule> POST_RULES = List.of(
