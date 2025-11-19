@@ -16,7 +16,7 @@ public class TranslitProcessor {
         Map.entry('ф', "f"), Map.entry('х', "h"), Map.entry('ц', "c"),
         Map.entry('ч', "ch"), Map.entry('ш', "S"), Map.entry('щ', "S"),
         Map.entry('ъ', ""), Map.entry('ы', "y"), Map.entry('ь', ""),
-        Map.entry('э', "e"), Map.entry('ю', "yu"), Map.entry('я', "ya")
+        Map.entry('э', "e"), Map.entry('ю', "u"), Map.entry('я', "ya")
     );
 
     private static final List<Rule> EN_RULES = List.of(
@@ -82,6 +82,8 @@ public class TranslitProcessor {
         rule("c([ieyIEY])", "s$1"),
         rule("c([aouAoUbcdfghjklmnpqrstvwxyzW])", "k$1"),
 
+        rule("ew(s?)", "u$1"),
+
         // ai => ei (daily, main, train, paint)
         rule("ai", "ei"),
         rule("ay$", "ei"),
@@ -104,13 +106,12 @@ public class TranslitProcessor {
         rule("y([bcdfghjklmnpqrstvwxz][aeiouy])", "I$1"), // cycle, typo
 
         // u
-        rule("u([bcdfghjklmnpqrstvwxz][aeiouy])", "iu$1"), // music
         rule("u([bcdfghjklmnpqrstvwxz][^aeiouy])", "A$1"), // supply, currency
 
         rule("(ye|uy)$", "I"), // bye, buy
         rule("ee", "I"),
         rule("oo", "u"),
-        rule("iou", "iu"), // seriuos
+        rule("iou", "io"), // seriuos
         rule("aye", "ee"), // player
 
         // ea
@@ -163,7 +164,6 @@ public class TranslitProcessor {
         rule("dzh", "J"),
         rule("ai", "i"),
         rule("a", "e"),
-        rule("io", "iu"), // сириус, сириос
         rule("y", "i"),
         rule("ou", "o")
     );
@@ -172,6 +172,7 @@ public class TranslitProcessor {
         // double consonants
         rule("([bcdfghjklmnpqrstvwxyz])\\1", "$1"),
 
+        rule("io", "iu"), // сириус, сириос, bio
         rule("z", "s")
     );
 

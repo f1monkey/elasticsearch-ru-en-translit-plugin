@@ -22,9 +22,11 @@ class TranslitProcessorTest {
             "спешиал, special",
             "спешиол, special",
 
-            "эктив, active",
             "сириос, serious",
             "сириус, sirius",
+            "биорей, bioray",
+
+            "эктив, active",
             "комплекс, complex",
             "кальциум, calcium",
             "плеер, player",
@@ -82,6 +84,7 @@ class TranslitProcessorTest {
             "апплай, apply",
             "сапплай, supply",
             "кенди, candy",
+            "кордицепс, cordyceps",
 
             "спик, speak",
             "брейк, break",
@@ -115,6 +118,10 @@ class TranslitProcessorTest {
             "олвейс, always",
             "футбол, football",
             "аллигейтор, alligator",
+
+            "формула, formula",
+            "ньюс, news",
+            "нью, new",
     })
     void testTransliteration(String input1, String input2) {
         String result1 = TranslitProcessor.normalize(input1);
