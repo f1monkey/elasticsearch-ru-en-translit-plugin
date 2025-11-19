@@ -84,6 +84,8 @@ public class TranslitProcessor {
 
         rule("ew(s?)", "u$1"),
 
+        rule("hei[Gg]ht", "hIGht"),
+
         // ai => ei (daily, main, train, paint)
         rule("ai", "ei"),
         rule("ay$", "ei"),
@@ -92,7 +94,7 @@ public class TranslitProcessor {
         rule("^friend$", "frend"),
         rule("ie", "I"), // cookie, field, piece
 
-        rule("igh", "I"),
+        rule("i[Gg]h", "I"),
 
         rule("e([bcdfghjklmnpqrstvwxyz][aeiuoy])", "I$1"), // scene, these, complete
 
@@ -132,8 +134,9 @@ public class TranslitProcessor {
         rule("wr", "r"), // write
         rule("wh", "W"), // who, what
         rule("ph", "f"),
-        rule("gh(?![aieo])", "g"),
-        rule("gh", "h"),
+        rule("[Gg]ht", "t"),
+        rule("[Gg]h(?![aieo])", "g"),
+        rule("[Gg]h", "h"),
 
         rule("c", "k"), // sounds like 'k'
         rule("[aA]", "e"), // ambigious: any => eny, max => maks

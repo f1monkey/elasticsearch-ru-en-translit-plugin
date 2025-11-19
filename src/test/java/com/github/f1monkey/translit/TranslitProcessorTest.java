@@ -122,6 +122,10 @@ class TranslitProcessorTest {
             "формула, formula",
             "ньюс, news",
             "нью, new",
+
+            "вейт, weight",
+            "хайт, height",
+            "хай, high"
     })
     void testTransliteration(String input1, String input2) {
         String result1 = TranslitProcessor.normalize(input1);
